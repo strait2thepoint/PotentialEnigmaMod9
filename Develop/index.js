@@ -7,42 +7,42 @@ const questions = [
 {
     type: 'input',
     name: 'title',
-    message: 'Project title',
+    message: 'Project title:',
 },
 {
     type: 'input',
     name: 'description',
-    message: 'Project description?'
+    message: 'Project description:'
 },
 {
     type: 'input',
     name: 'installation',
-    message: 'Installation instructions?'
+    message: 'Installation instructions:'
 },
 {
     type: 'input',
     name: 'usage',
-    message: 'Project usage?' 
+    message: 'Project usage instructions:' 
 },
 {
     type: 'input',
     name: 'contribution',
-    message: 'Contribution information?'
+    message: 'Contribution information:'
 },
 {
     type: 'input',
     name: 'questions',
-    message: 'For questions(email)?'
+    message: 'For questions(email):'
 },
 {
     type: 'input',
     name: 'questions',
-    message: 'For questions(github)?'
+    message: 'For questions(github):'
 },
 {
     type: 'input',
     name: 'license',
-    message: 'License Type?',
+    message: 'License Type:',
     choices: [
         'No license',
         'MIT',
@@ -62,7 +62,7 @@ function writeToFile(fileName, data) {
 function init() {
     return inquirer.prompt(questions)
     .then((answers)=>{
-        const mark = generateMarkDown(answers)
+        const mark = generateMarkDown(answers)//this is where I have trouble.
         // console.log(mark)
         fs.writeFile('README.md', mark, 
         function(err) {
