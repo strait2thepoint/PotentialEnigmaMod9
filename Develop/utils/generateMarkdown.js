@@ -18,7 +18,7 @@ function renderLicenseLink(license) {
     isc:'[ISC](https://choosealicense.com/licenses/isc/)',
     gnu: '[GNU](https://choosealicense.com/licenses/gpl-3.0/)'
   }
-  return licenseLinks(license)
+  return licenseLinks
 }
 
 // TODO: Create a function that returns the license section of README
@@ -35,7 +35,7 @@ function renderLicenseSection(license) {
 function generateMarkDown(data) {
   return `# ${data.title}
 
-  ${this.renderLicenseBadge(data.license)}
+${renderLicenseBadge(data.license)}
     ## Table of Content
     -[Project description](#Description)
     -[Usage](#Usage)
@@ -61,7 +61,7 @@ function generateMarkDown(data) {
     ${data.github}
     
     ## License
-    ${this.data.renderLicenseLink(data.license)}`;
+    ${renderLicenseLink(data.license)}`;
 }
 
 module.exports = generateMarkDown;

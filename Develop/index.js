@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
+const path = require('path')
 const markDown = require('./utils/generateMarkdown');
 // TODO: Create an array of questions for user input
 const questions = [
@@ -54,17 +55,15 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    let writeFile = fs.createWriteStream(fileName);
-    writeYou.write(data);
-}
+    return fs.writeFileSync(path.join(process.cwd(),fileName), data)
+} 
 
 // TODO: Create a function to initialize app
 function init() {
-    return inquirer.prompt(questions)
-    .then((answers)=>{
-        const mark = generateMarkDown(answers)//this is where I have trouble.
-        // console.log(mark)
-        fs.writeFile('README.md', mark, 
+     inquirer.prompt(questions).then((answers)=>{
+        console.log(answers)
+       
+        fs.createWriteStream('Generating README.md',  
         function(err) {
             if(err){
                 console.log('Could not save file')
@@ -72,7 +71,8 @@ function init() {
               console.log('Success: new README generated inside the current folder')  
             }
         })
-        return answers
+        writeToFile('README.md', markDown({...answers}))
+        
     })
     .catch((error)=>{
         console.log(error)
