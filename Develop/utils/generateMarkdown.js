@@ -7,25 +7,27 @@ function renderLicenseBadge(license) {
     isc: '[![Liscense: ISC](https://img.shields.io/badge/ISC-strait2thepoint-ff69b4.svg)](https://opensource.org/licenses/ISC)',
     gnu: '[![License: GNU](https://img.shields.io/badge/GNU-strait2thepoint-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)'
   }
-  return badges[license]
+  return badges[license.toLowerCase()]
 }
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
+  console.log("trying to render License Link")
   const licenseLinks ={
     mit: '[MIT](https://choosealicense.com/mit/)',
     isc:'[ISC](https://choosealicense.com/licenses/isc/)',
     gnu: '[GNU](https://choosealicense.com/licenses/gpl-3.0/)'
   }
-  return licenseLinks
+  return licenseLinks[license.toLowerCase()]
 }
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
+  console.log("Just got my license in render license section")
   if(license){
-    return `Licensed under the ${this.renderLicenseLink(license)} license`
+    return `Licensed under the ${renderLicenseLink(license)} license`
   } else {
     return ''
   }
@@ -33,6 +35,9 @@ function renderLicenseSection(license) {
 
 // TODO: Create a function to generate markdown for README
 function generateMarkDown(data) {
+console.log("This is the data in my markdown")
+console.log(data)
+
   return `# ${data.title}
 
 ${renderLicenseBadge(data.license)}
@@ -54,14 +59,14 @@ ${renderLicenseBadge(data.license)}
     ${data.installation}
     
     ## Contributing
-    ${data.contributing}
+    ${data.contribution}
     
     ## Questions
     ${data.email}
     ${data.github}
     
     ## License
-    ${renderLicenseLink(data.license)}`;
+    ${renderLicenseSection(data.license)}`;
 }
 
 module.exports = generateMarkDown;
