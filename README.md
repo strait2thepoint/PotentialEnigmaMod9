@@ -17,6 +17,7 @@
     
     ## Usage
     To be able to generate a README for any project
+    ![Video of usage](https://watch.screencastify.com/v/Ke9u3eb5aw8Xh5wJG8KH)
 
     ## Installation
   Please type node index.js into your CLI after cd'ing into the correct Develop folder.  Thank you.
